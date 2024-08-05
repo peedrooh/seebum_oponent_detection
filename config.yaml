@@ -1,0 +1,6 @@
+path: /home/pedro/Pessoal/code/UTFPR/TCC/seebum_oponent_detection/data
+train: images/train
+val: images/val
+
+names:
+  0: oponent
