@@ -1,5 +1,4 @@
-from ultralytics import YOLO
+from test_camera import test_camera
 
-model = YOLO("yolov8n.yaml")
-
-results = model.train(data="config.yaml", epochs=110)
+if __name__ == "__main__":
+    test_camera(1);
