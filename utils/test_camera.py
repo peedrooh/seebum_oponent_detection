@@ -11,7 +11,7 @@ def test_camera(period):
     for i in range(10):
         cam.start();
         sleep(period);
-        cam.capture_file(f"./photos/photo_{i}.jpg");
+        cam.capture_file(f"./assests/photos/photo_{i}.jpg");
 
 if __name__ == "__main__":
     test_camera(2);
