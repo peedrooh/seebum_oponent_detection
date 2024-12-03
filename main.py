@@ -65,8 +65,8 @@ if __name__ == "__main__":
             results = model("./assets/test_file.jpg")[0];
             for result in results.boxes.data.tolist():
                 x1, y1, x2, y2, score, class_id = result;
-                width = x2 - x1;
-                height = y2 - y1;
+                width = int(x2 - x1);
+                height = int(y2 - y1);
                 x_center = x1 + width / 2;
                 y_center = y1 + height / 2;
                 ser.write(f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}".encode());
