@@ -1,6 +1,5 @@
 import atexit
 import serial
-import time
 
 from picamera2 import Picamera2
 
@@ -70,8 +69,7 @@ if __name__ == "__main__":
                 height = int(y2 - y1);
                 x_center = x1 + width / 2;
                 y_center = y1 + height / 2;
-                ser.write(f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}".encode());
-                time.sleep(0.1);
+                ser.write(f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n".encode());
 
     except KeyboardInterrupt:
         print("\nInterrupted by user. Exiting...");
