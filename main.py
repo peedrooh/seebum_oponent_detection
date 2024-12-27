@@ -62,14 +62,16 @@ if __name__ == "__main__":
         while(1):
             cam.start();
             cam.capture_file("./assets/test_file.jpg");
-            results = model("./assets/test_file.jpg")[0];
-            for result in results.boxes.data.tolist():
-                x1, y1, x2, y2, score, class_id = result;
-                width = int(x2 - x1);
-                height = int(y2 - y1);
-                x_center = x1 + width / 2;
-                y_center = y1 + height / 2;
-                ser.write(f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n".encode());
+            results = model("./assets/test_file.jpg")[0].boxes.data.tolist();
+
+            if(len(results) == 0): continue;
+
+            x1, y1, x2, y2, score, class_id = results[0];
+            width = int(x2 - x1);
+            height = int(y2 - y1);
+            x_center = x1 + width / 2;
+            y_center = y1 + height / 2;
+            bytes_writen = ser.write(f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n".encode());
 
     except KeyboardInterrupt:
         print("\nInterrupted by user. Exiting...");
