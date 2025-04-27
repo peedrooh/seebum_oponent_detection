@@ -10,6 +10,8 @@ import cv2
 cam = None
 ser = None
 
+# frame_count = 0
+# total_time = 0
 def cleanup():
     print("\nCleaning up resources before exiting...")
     if cam:
@@ -83,7 +85,13 @@ if __name__ == "__main__":
 
             # end_time = time.time()
             # cycle_time = end_time - start_time
-            # print(f"Cycle time: {cycle_time:.4f} seconds")
+            # fps = 1.0 / cycle_time if cycle_time > 0 else 0
+            #
+            # frame_count += 1
+            # total_time += cycle_time
+            # avg_fps = frame_count / total_time if total_time > 0 else 0
+            #
+            # print(f"Cycle time: {cycle_time:.4f} seconds | Instant FPS: {fps:.2f} | Avg FPS: {avg_fps:.2f}")
             if ser:
                 message = f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n"
                 ser.write(message.encode())
