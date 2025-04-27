@@ -37,7 +37,7 @@ if __name__ == "__main__":
     print("\nStart configuring camera...")
     try:
         cam = Picamera2()
-        camera_config = cam.create_preview_configuration(main={"size": (640, 480)})  # Smaller = faster
+        camera_config = cam.create_preview_configuration(main={"size": (320, 256)})  # Smaller = faster
         cam.configure(camera_config)
         cam.start()
         print("Finished configuring camera.\n\n")
@@ -61,13 +61,13 @@ if __name__ == "__main__":
 
     try:
         while True:
-            start_time = time.time()
+            # start_time = time.time()
             frame = cam.capture_array()
 
             if frame.shape[2] == 4:
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2RGB)
 
-            results = model.predict(frame, imgsz=(640, 480), device='cpu', verbose=False)[0].boxes.data.tolist()
+            results = model.predict(frame, imgsz=(320, 256), device='cpu', verbose=False)[0].boxes.data.tolist()
 
             if len(results) == 0:
                 continue
@@ -81,9 +81,9 @@ if __name__ == "__main__":
             # message = f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n"
             # print(message)
 
-            end_time = time.time()  # End measuring time for the cycle
-            cycle_time = end_time - start_time  # Calculate elapsed time
-            print(f"Cycle time: {cycle_time:.4f} seconds")
+            # end_time = time.time()
+            # cycle_time = end_time - start_time
+            # print(f"Cycle time: {cycle_time:.4f} seconds")
             if ser:
                 message = f"x_center: {int(x_center)}, y_center: {int(y_center)}, w: {width}, h: {height}\n"
                 ser.write(message.encode())
